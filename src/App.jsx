@@ -12,7 +12,7 @@ import PuzzlesPage from './pages/PuzzlesPage';
 
 function ProtectedRoute({ children }) {
   if (!isAuthenticated()) {
-    return <Navigate to="/admin/login" replace />;
+    return <Navigate to="/login" replace />;
   }
   return children;
 }
@@ -32,9 +32,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/admin/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route
-          path="/admin"
+          path="/"
           element={
             <ProtectedRoute>
               <AdminLayout><DashboardPage /></AdminLayout>
@@ -42,7 +42,7 @@ export default function App() {
           }
         />
         <Route
-          path="/admin/users"
+          path="/users"
           element={
             <ProtectedRoute>
               <AdminLayout><UsersPage /></AdminLayout>
@@ -50,7 +50,7 @@ export default function App() {
           }
         />
         <Route
-          path="/admin/games"
+          path="/games"
           element={
             <ProtectedRoute>
               <AdminLayout><GamesPage /></AdminLayout>
@@ -58,7 +58,7 @@ export default function App() {
           }
         />
         <Route
-          path="/admin/reports"
+          path="/reports"
           element={
             <ProtectedRoute>
               <AdminLayout><ReportsPage /></AdminLayout>
@@ -66,7 +66,7 @@ export default function App() {
           }
         />
         <Route
-          path="/admin/tournaments"
+          path="/tournaments"
           element={
             <ProtectedRoute>
               <AdminLayout><TournamentsPage /></AdminLayout>
@@ -74,7 +74,7 @@ export default function App() {
           }
         />
         <Route
-          path="/admin/puzzles"
+          path="/puzzles"
           element={
             <ProtectedRoute>
               <AdminLayout><PuzzlesPage /></AdminLayout>
@@ -82,14 +82,14 @@ export default function App() {
           }
         />
         <Route
-          path="/admin/server"
+          path="/server"
           element={
             <ProtectedRoute>
               <AdminLayout><ServerPage /></AdminLayout>
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<Navigate to="/admin" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,4 +1,4 @@
-const API_BASE = '/api/admin';
+const API_BASE = import.meta.env.VITE_API_URL || '/api/admin';
 
 // Get stored token
 const getToken = () => localStorage.getItem('admin_token');
@@ -16,7 +16,7 @@ const apiFetch = async (endpoint, options = {}) => {
 
     if (res.status === 401 || res.status === 403) {
         localStorage.removeItem('admin_token');
-        window.location.href = '/admin/login';
+        window.location.href = '/login';
         throw new Error('Unauthorized');
     }
 
@@ -52,7 +52,7 @@ export const loginAdmin = async (email, password) => {
 
 export const logout = () => {
     localStorage.removeItem('admin_token');
-    window.location.href = '/admin/login';
+    window.location.href = '/login';
 };
 
 export const isAuthenticated = () => !!getToken();

@@ -15,7 +15,7 @@ export default function LoginPage() {
         setLoading(true);
         try {
             await loginAdmin(email, password);
-            navigate('/admin');
+            navigate('/');
         } catch (err) {
             setError(err.message || 'Login failed');
         } finally {
